@@ -16,6 +16,20 @@
 .home__image {
   width: 100%;
   z-index: -1;
-  margin-bottom: -150px;
+  /* margin-bottom: -150px; */
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+.home__carousel {
+  margin-bottom: -300px;
+}
+
+.header__carouselButton {
+  background-color: transparent;
+  font-weight: lighter;
+  border: 0;
+  position: absolute;
+  z-index: 2;
+  top: calc(50% - 200px);
+  cursor: pointer;
 }

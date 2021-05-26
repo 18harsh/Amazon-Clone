@@ -1,5 +1,5 @@
 .header {
-  height: 60px;
+  height: 70px;
   display: flex;
   align-items: center;
   background-color: #131921;
@@ -28,19 +28,30 @@
   display: flex;
   flex: 1;
   align-items: center;
-  border-radius: 24px;
 }
+
+.header__search:focus {
+  border: 3px solid #ff9900;
+}
+
 .header__searchInput {
-  height: 12px;
+  height: 20px;
   padding: 10px;
-  border: none;
+  border: 0;
   width: 100%;
+  outline: none;
 }
 
 .header__searchIcon {
+  min-width: 30px;
   padding: 5px;
-  height: 22px !important;
-  background-color: #cd9042;
+  border: 0;
+  height: 30px !important;
+  background-color: #feb069;
+  border-radius: 0 4px 4px 0;
+}
+.header__searchIcon:hover {
+  background-color: #f3a847;
 }
 .header__nav {
   display: flex;
@@ -65,6 +76,7 @@
 
 .header__locationIcon {
   color: white;
+  margin-top: 10px;
 }
 .header__optionAddress {
   display: flex;
@@ -77,9 +89,21 @@
   display: flex;
   align-items: center;
   color: white;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 .header__basketCount {
-  margin-left: 10px;
+  margin-left: -18px;
+  margin-top: -40px;
+  font-weight: bold;
+  font-size: 17px;
+  color: #f08804;
+}
+
+.header__optionLineCart {
+  font-size: 13px;
+  font-weight: 800;
   margin-right: 10px;
+  padding: 5px;
 }

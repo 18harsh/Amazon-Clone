@@ -1,38 +1,99 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Header.css'
 import RoomIcon from '@material-ui/icons/Room';
 import SearchIcon from '@material-ui/icons/Search';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { Link } from 'react-router-dom';
+
+
+import { makeStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { useStateValue } from './StateProvider';
+import { auth } from './firebase';
 
 function Header() {
+
+    const classes = useStyles();
+    
+    const [categories, setCategories] = useState("");
+    const [{ cart, user }, dispatch] = useStateValue();
+    const [location, setLocation] = useState([]);
+
+    const handleChangeFormcontrol = (event) => {
+        setCategories(event.target.value);
+    };
+
+    const handleAuthentication = () => {
+        if (user) {
+            auth.signOut();
+        }
+    }
+
+    useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        setLocation([position.coords.latitude,position.coords.longitude])
+        
+    });
+  },[])
+
     return (
         <div className='header'>
-            <div className="header__logoIndia">
-                <img
-                className="header__logo"
-                src="https://pngimg.com/uploads/amazon/amazon_PNG25.png"
-                />
-                <span className="header__logoDotIn">
-                    .in
-                </span>
-            </div>
+            
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                    <div className="header__logoIndia">
+                    <img
+                            alt=""
+                            className="header__logo"
+                            src="https://pngimg.com/uploads/amazon/amazon_PNG25.png"
+                            />
+                        <span className="header__logoDotIn">
+                                .in
+                        </span>
+                    </div>
+                </Link>
+                
+            
             
             <div className="header__nav">
                 <RoomIcon
                     className="header__locationIcon"/>
                 <div className="header__optionAddress">
-                    
                     <span className="header__optionLineOne">
-                        Hello
+                        {user?'Deliver to '+ user.email : 'Hello' }    
                     </span>
+                   
                     <span className="header__optionLineTwo">
                         
-                        Select your address
+                        {(location.length === 2) ?
+                            (
+                                'on location '+Math.round(location[0] * 100) / 100+ ", "+  Math.round(location[1] * 100) / 100
+                            ): (
+                                'Select your address'
+                            )
+                        }
                     </span>
                 </div>
             </div>
             <div
-             className="header__search">
+                className="header__search">
+                
+                <FormControl variant="outlined" className={classes.header__formControl}>
+                    <Select
+                        displayEmpty
+                        value={categories}
+                        onChange={handleChangeFormcontrol}
+                        displayEmpty
+                        className={classes.header__formControlSelectEmpty}
+                    >   
+                        <MenuItem value="">All Catergories</MenuItem>
+                        <MenuItem value="Deals">Deals</MenuItem>
+                    
+                    </Select>
+                </FormControl>
+
+
                 <input
                     className="header__searchInput"
                     type="text"
@@ -41,15 +102,18 @@ function Header() {
                     className="header__searchIcon"/>
 
             </div>
-            <div className="header__nav">
-                <div className="header__option">
-                    <span className="header__optionLineOne">
-                        Hello, Guest
-                    </span>
-                    <span className="header__optionLineTwo">
-                        Sign In
-                    </span>
-                </div>
+            <div  className="header__nav">
+                <Link to={!user && '/login'} style={{ textDecoration: 'none' }}>
+                    <div className="header__option" onClick={ handleAuthentication}>
+                        <span className="header__optionLineOne">
+                            Hello, {user?.email}
+                        </span>
+                        <span className="header__optionLineTwo">
+                               {user?'Sign Out':'Sign In'} 
+                        </span>
+                    </div>
+                </Link>
+                
                 <div className="header__option">
                     <span className="header__optionLineOne">
                         Returns
@@ -66,14 +130,39 @@ function Header() {
                         Prime
                     </span>
                 </div>
-                <div className="header__optionBasket">
-                    <ShoppingBasketIcon />
-                    <span className="header__optionLineTwo header__basketCount">0</span>
-                </div>
+                <Link to="/checkout" style={{ textDecoration: 'none' }}>
+                     <div className="header__optionBasket">
+                    <ShoppingCartIcon />
+                        <span className="header__basketCount">{cart?.length} </span>
+                        <span className="header__optionLineCart">Cart</span>
+                    </div>
+                 </Link>
+               
             </div>
             
         </div>
     )
 }
+
+
+const useStyles = makeStyles(() => ({
+    header__formControl: {
+        backgroundColor: "white",
+        minWidth: "auto",
+        border: 0,
+        borderRadius: "10px 0 0 10px",
+        
+  },
+    header__formControlSelectEmpty: {
+        
+        backgroundColor: "white",
+        '&:hover': {
+            background: "#dadada",
+        },
+        fontSize: 13,
+        height: "40px",
+        
+  }
+}));
 
 export default Header

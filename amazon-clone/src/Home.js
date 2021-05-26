@@ -1,29 +1,88 @@
 import React from 'react'
 import "./Home.css"
 import Product from './Product'
-import SimpleImageSlider from "react-simple-image-slider";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+
+
 function Home() {
 
-    const images = [
-        { url: "https://images-eu.ssl-images-amazon.com/images/G/31/AmazonVideo/2021/X-site/Multititle/May/M17/non-reg/1500x600_Hero-Tall_JPN._CB668432235_.jpg" },
-        { url: "https://images-eu.ssl-images-amazon.com/images/G/31/img21/HPC/GW/Household_1500x600_V2._CB670004437_.jpg" },
-        { url: "https://images-eu.ssl-images-amazon.com/images/G/31/img21/HPC/GW/Grocery_1500x600._CB669573043_.jpg" },
-        { url: "https://images-eu.ssl-images-amazon.com/images/G/31/Gateway/Zeitgeist/Mar20/Covid19/2021/IN_GWD_Covid19_CustomerMsg_MH_ENG_1x_v1._CB669806110_.jpg" },
-        { url: "https://images-eu.ssl-images-amazon.com/images/G/31/img18/Fresh/GW/May21/fresh-pc_021x._CB670987717_.jpg" },
-        { url: "https://images-eu.ssl-images-amazon.com/images/G/31/img17/Home/AmazonTV/Ravina/1500X600._CB668498028_.png" },
-        { url: "https://images-eu.ssl-images-amazon.com/images/G/31/img17/Auto/PSS/Personal-Safety_1500x600._CB668022827_.jpg" },
-        { url: "https://images-eu.ssl-images-amazon.com/images/G/31/img17/AmazonPay/Javed/GTM/HeroPC_1500x600_CBCC._CB669049594_.jpg" },
-    ];
-
+    
     return (
         <div className="home">
             <div className="home__container">
-                <SimpleImageSlider
-                    className="home__image"
-                    images={images}
-                />
+
+                <Carousel
+                    renderArrowPrev={(onClickHandler, hasPrev, label) =>
+                    hasPrev && (
+                        <button type="button" onClick={onClickHandler} title={label} className="header__carouselButton" style={{ left: 15 }}>
+                            {/* <NavigateBeforeIcon style={{ fontSize: 100,}}/> */}
+                        </button>
+                    )
+                }
+                    renderArrowNext={(onClickHandler, hasNext, label) =>
+                        hasNext && (
+                            <button type="button" onClick={onClickHandler} title={label} className="header__carouselButton"  style={{ right: 15 }}>
+                                {/* <NavigateNextIcon style={{ fontSize: 100, }} /> */}
+                                
+                            </button>
+                        )
+                    }
+                    showThumbs={false} showIndicators={false} showStatus={false} autoPlay autoFocus infiniteLoop className="home__carousel">
+                    <div>
+                        <img
+                                alt=""
+                                className="home__image"
+                                src="https://images-eu.ssl-images-amazon.com/images/G/31/AmazonVideo/2021/X-site/Multititle/May/M17/non-reg/1500x600_Hero-Tall_JPN._CB668432235_.jpg" />
+                    </div>
+                    <div>
+                        <img
+                                alt=""
+                                className="home__image"
+                                src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/HPC/GW/Household_1500x600_V2._CB670004437_.jpg" />
+                    </div>
+                    <div>
+                        <img
+                                alt=""
+                                className="home__image"
+                                src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/HPC/GW/Grocery_1500x600._CB669573043_.jpg" />
+                    </div>
+                    <div>
+                        <img
+                                alt=""
+                                className="home__image"
+                                src="https://images-eu.ssl-images-amazon.com/images/G/31/Gateway/Zeitgeist/Mar20/Covid19/2021/IN_GWD_Covid19_CustomerMsg_MH_ENG_1x_v1._CB669806110_.jpg" />
+                    </div>
+                    <div>
+                            <img
+                                alt=""
+                                className="home__image"
+                                src="https://images-eu.ssl-images-amazon.com/images/G/31/img18/Fresh/GW/May21/fresh-pc_021x._CB670987717_.jpg" />
+                    </div>
+                    <div>
+                            <img
+                                alt=""
+                                className="home__image"
+                                src="https://images-eu.ssl-images-amazon.com/images/G/31/img17/Home/AmazonTV/Ravina/1500X600._CB668498028_.png" />
+                    </div>
+                    <div>
+                            <img
+                                alt=""
+                                className="home__image"
+                                src="https://images-eu.ssl-images-amazon.com/images/G/31/img17/Auto/PSS/Personal-Safety_1500x600._CB668022827_.jpg" />
+                    </div>
+                    <div>
+                            <img
+                                alt=""
+                                className="home__image"
+                                src="https://images-eu.ssl-images-amazon.com/images/G/31/img17/AmazonPay/Javed/GTM/HeroPC_1500x600_CBCC._CB669049594_.jpg" />
+                    </div>
+            </Carousel>
+
                 {/* <img
-                    className="home__image" src="" /> */}
+                    className="home__image" src="https://images-eu.ssl-images-amazon.com/images/G/31/AmazonVideo/2021/X-site/Multititle/May/M17/non-reg/1500x600_Hero-Tall_JPN._CB668432235_.jpg" /> */}
                 
                 <div className="home__row">
                     <Product
@@ -78,5 +137,7 @@ function Home() {
         </div>
     )
 }
+
+
 
 export default Home
