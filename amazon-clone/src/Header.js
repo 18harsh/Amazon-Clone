@@ -12,14 +12,18 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { useStateValue } from './StateProvider';
 import { auth } from './firebase';
+// import * as functions from 'firebase-functions';
+
+
+// const config = functions.config();
+// const stripe = config.stripe.geocoding_api
 
 function Header() {
 
     const classes = useStyles();
     
     const [categories, setCategories] = useState("");
-    const [{ cart, user }, dispatch] = useStateValue();
-    const [location, setLocation] = useState([]);
+    const [{ cart, user,address }, dispatch] = useStateValue();
 
     const handleChangeFormcontrol = (event) => {
         setCategories(event.target.value);
@@ -31,12 +35,7 @@ function Header() {
         }
     }
 
-    useEffect(() => {
-    navigator.geolocation.getCurrentPosition(function(position) {
-        setLocation([position.coords.latitude,position.coords.longitude])
-        
-    });
-  },[])
+    
 
     return (
         <div className='header'>
@@ -66,9 +65,9 @@ function Header() {
                    
                     <span className="header__optionLineTwo">
                         
-                        {(location.length === 2) ?
+                        {(address?.city) ?
                             (
-                                'on location '+Math.round(location[0] * 100) / 100+ ", "+  Math.round(location[1] * 100) / 100
+                                address?.city+ ' ' + address?.postcode
                             ): (
                                 'Select your address'
                             )
@@ -114,14 +113,17 @@ function Header() {
                     </div>
                 </Link>
                 
-                <div className="header__option">
-                    <span className="header__optionLineOne">
-                        Returns
-                    </span>
-                    <span className="header__optionLineTwo">
-                        & Orders
-                    </span>
-                </div>
+                <Link to="/orders" style={{ textDecoration: 'none' }}>
+                    <div className="header__option">
+                        <span className="header__optionLineOne">
+                            Returns
+                        </span>
+                        <span className="header__optionLineTwo">
+                            & Orders
+                        </span>
+                    </div>
+                </Link>
+                    
                 <div className="header__option">
                     <span className="header__optionLineOne">
                         Your

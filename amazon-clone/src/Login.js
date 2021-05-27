@@ -32,7 +32,7 @@ function Login() {
                     <img
                     alt=""  
                     className="login__logo"
-                    src="https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo-700x394.png"
+                    src="https://pngimg.com/uploads/amazon/amazon_PNG6.png"
                     />
                     <span className="login__logoDotIn">
                         .in

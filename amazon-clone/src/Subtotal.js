@@ -3,9 +3,13 @@ import './Subtotal.css'
 import CurrencyFormat from "react-currency-format"
 import { useStateValue } from './StateProvider';
 import { getCartTotal } from './reducer';
+import { useHistory } from 'react-router';
+
 
 function Subtotal() {
-     const [{ cart }, dispatch] = useStateValue();   
+
+    const history = useHistory();
+    const [{ cart }, dispatch] = useStateValue();   
     return (
         <>
         <img src="https://images-eu.ssl-images-amazon.com/images/G/31/checkout/assets/TM_desktop._CB443006202_.png" alt="" className="subtotal__image"
@@ -29,7 +33,7 @@ function Subtotal() {
                 thousandSeperator={true}
                 prefix={"₹"}
             />
-            <button>Proceed to Buy</button>
+            <button onClick={e=>history.push('/payment')}>Proceed to Buy</button>
             </div>
         </>
     )

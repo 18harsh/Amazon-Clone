@@ -4,16 +4,47 @@ import Home from './Home';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Checkout from './Checkout';
 import Login from './Login';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { auth } from "./firebase";
 import { useStateValue } from './StateProvider';
+import Payment from './Payment';
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
+import Orders from './Orders';
+
+const promise = loadStripe('YOUR Publishable key');
 
 function App() {
 
   const [{ }, dispatch] = useStateValue();
-
-
   
+  useEffect(() => {
+        navigator.geolocation.getCurrentPosition(function (position) {
+        
+        const latitude = position.coords.latitude
+        const longitude = position.coords.longitude
+
+        // console.log("LOCATION>>>", [position.coords.latitude, position.coords.longitude])
+        // console.log("LOCATION>>>",location)
+            
+        // fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude},${longitude}&key=${stripe}`)
+        //     .then(response => response.json())
+        //     .then(data => setAddress(data.results[0].components))
+        //     .catch(e => console.log("ERROR>>>" + e))
+
+
+        fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude},${longitude}&key=${process.env.React_App_GEOCODING_API}`)
+            .then(response => response.json())
+          .then(data => {
+                dispatch({
+                type: 'ADD_ADDRESS',
+                address:data.results[0].components
+      
+              })
+            })
+          .catch(e => console.log("ERROR>>>" + e))
+    });
+  },[])
 
   useEffect(() => {
     auth.onAuthStateChanged(authUser => {
@@ -36,13 +67,27 @@ function App() {
       <div className="App">
         
         <Switch>
+          <Route path='/orders'>
+            <Header />
+            <Orders/>
+          </Route>
+
           <Route path='/login'>
             <Login/>
           </Route>
+
           <Route path='/checkout'>
             <Header />
             <Checkout />
           </Route>
+
+          <Route path='/payment'>
+            <Header />
+            <Elements stripe={promise}>
+              <Payment/>
+            </Elements>
+          </Route>
+
           <Route path='/'>
             <Header />
             <Home/> 

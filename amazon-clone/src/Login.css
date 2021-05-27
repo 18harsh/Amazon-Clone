@@ -10,7 +10,7 @@
 }
 
 .login__logo {
-  /* margin-top: 20px; */
+  margin-top: 20px;
   margin-bottom: 20px;
   object-fit: contain;
   width: 100px;
@@ -20,7 +20,7 @@
 
 .login__logoDotIn {
   color: black;
-  margin-top: 13px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
