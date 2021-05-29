@@ -1,15 +1,24 @@
 import React from 'react'
 import "./Product.css"
 import { useStateValue } from './StateProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Product({ id, title, image, price, rating }) {
     
     const [{ cart }, dispatch] = useStateValue();
+    const notify = (title) => toast(
+        <>
+            <p style={{color: "black"}}>{title}</p>
+            <strong style={{color: "green"}}> has been added in your Cart</strong>
+        </>
+    ); 
     
     // console.log(cart)
 
     const addToCart = () => {
         // dispatch the item into data layer
+        notify(title);
         dispatch({
             type: 'ADD_TO_CART',
             item: {
@@ -53,7 +62,20 @@ function Product({ id, title, image, price, rating }) {
             
             <img src={ image} alt="" />
             { price &&
-                <button onClick={ addToCart}>Add to Cart</button>
+                <>
+                <button onClick={addToCart}>Add to Cart</button>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={true}
+                    newestOnTop={true}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    pauseOnHover
+                    toastClassName="product__toastContainer"
+                />
+                </>
             }
         </div>
     )

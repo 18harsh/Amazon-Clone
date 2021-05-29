@@ -56,3 +56,7 @@
 .product__headerOnly {
   margin-top: 20px;
 }
+
+.product__toastContainer {
+  top: 70px;
+}

@@ -3,8 +3,8 @@ import "./Home.css"
 import Product from './Product'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+// import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+// import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 
 function Home() {
@@ -86,6 +86,13 @@ function Home() {
                 
                 <div className="home__row">
                     <Product
+                        key={102344353455}
+                        id={ 102344353455}
+                        title="Masks Combo"
+                        price={299}
+                        image="https://images-eu.ssl-images-amazon.com/images/G/31/Symbol/2021/MayArt_GW/Couple_mask_1._SY304_CB670955378_.jpg"
+                        rating={4} />
+                    <Product
                         key={10234455}
                         id={ 10234455}
                         title="Pulse oximeters | Starting"
@@ -100,6 +107,7 @@ function Home() {
                         rating={ 0}/>
                     
                 </div>
+                <h1 style={{marginLeft:"30px"}}>Inspired by your search history</h1>
                 <div className="home__row">
                     <Product
                         key={102344535}
@@ -111,9 +119,9 @@ function Home() {
                     <Product
                         key={1023445557}
                         id={ 1023445557}
-                        title="RiaTech Large Size (600mm x 300mm x 2mm) Extended Gaming Mouse Pad with Stitched Embroidery Edge, Premium-Textured Keyboard Desk Mat, Non-Slip Rubber Base Mousepad for Laptop/Computer- Black with Blue Border"
-                        price={329}
-                        image="https://images-na.ssl-images-amazon.com/images/I/91UMAY5GRNL._SL1500_.jpg"
+                        title="ZOSOE Plastic Table Lamp, white"
+                        price={529}
+                        image="https://images-na.ssl-images-amazon.com/images/I/612vqqkyz-L._SL1000_.jpg"
                         rating={ 4}/>
                     <Product
                         key={1023445675}
@@ -121,14 +129,54 @@ function Home() {
                         title="Mellifluous Reversible Super Soft Velvet Round Cat Dog Pet Bed Diameter 61 cms Height 15 cms S (Small, Brown Cream)"
                         price={439}
                         image="https://images-na.ssl-images-amazon.com/images/I/71YMD-eEy6L._SL1500_.jpg"
-                        rating={ 4}/>
+                        rating={ 5}/>
+                </div>
+                <h1 style={{marginLeft:"30px"}}>Apple Products</h1>
+                <div className="home__row">
+                    <Product
+                        key={10234453554}
+                        id={ 10234453554}
+                        title="New Apple Watch Series 6 (GPS, 44mm) - Blue Aluminium Case with Deep Navy Sport Band"
+                        price={43900}
+                        image="https://images-na.ssl-images-amazon.com/images/I/71ZlG-lXrSL._SL1500_.jpg"
+                        rating={ 5}/>
+                    <Product
+                        key={10234455574563}
+                        id={ 10234455574563}
+                        title="New Apple MacBook Pro with Apple M1 Chip (13-inch, 8GB RAM, 256GB SSD) - Space Grey (Latest Model)"
+                        price={116700}
+                        image="https://images-na.ssl-images-amazon.com/images/I/71an9eiBxpL._SL1500_.jpg"
+                        rating={ 5}/>
+                    <Product
+                        key={1023445675354323}
+                        id={ 1023445675354323}
+                        title="Apple AirPods with Wireless Charging Case"
+                        price={15000}
+                        image="https://images-na.ssl-images-amazon.com/images/I/71IPFP9WJIL._SL1500_.jpg"
+                        rating={5} />
+                    <Product
+                        key={102344567523}
+                        id={ 102344567523}
+                        title="New Apple iPad (10.2-inch, Wi-Fi, 32GB) - Space Grey (Latest Model, 8th Generation)"
+                        price={29900}
+                        image="https://images-na.ssl-images-amazon.com/images/I/71ZXj1QEE0L._SL1500_.jpg"
+                        rating={ 5}/>
+                </div>
+                <h1 style={{marginLeft:"30px"}}>Deal of the Day</h1>
+                <div className="home__row">
+                    <Product
+                        key={10234456545}
+                        id={ 10234456545}
+                        title="LG 25-inch (63.5 cm) UltraWide Multitasking Monitor with Full HD  (2560 x 1080) IPS Panel, HDMI Port, AMD Freesync - 25UM58 (Black)"
+                        price={13391}
+                        image="https://images-na.ssl-images-amazon.com/images/I/81pv0g8bQhL._SL1500_.jpg"
+                        rating={5}
+                    />
                 </div>
                 <div className="home__row">
                     <Product
                         key={1023445655}
                         id={ 1023445655}
-                        // title="Mellifluous Reversible Super Soft Velvet Round Cat Dog Pet Bed Diameter 61 cms Height 15 cms S (Small, Brown Cream)"
-                        // price={439}
                         image="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Vernac13th/1500x150_V2_Eng._CB412582591_.jpg"
                         rating={0}
                     />

@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Checkout.css"
 import Subtotal from './Subtotal'
 import CurrencyFormat from "react-currency-format"
 import CheckoutProduct from './CheckoutProduct'
 import { useStateValue } from './StateProvider';
 import { getCartTotal } from './reducer'
+import FlipMove from 'react-flip-move';
 
 function Checkout() {
     
-    const [{ cart,user }, dispatch] = useStateValue();   
+    const [{ cart, user }, dispatch] = useStateValue();
+    
+    // useEffect({
+
+    // }, []);
 
     return (
         <div className="checkout">
@@ -17,19 +22,21 @@ function Checkout() {
                 <div style={{borderBottom: "1px solid lightgray"}}>
                     <h3>Hello, {user?.email}</h3>
                     <h2 className="checkout_title">Your Shopping Basket</h2>
-                    {cart.map(item => (
-                        <CheckoutProduct
-                            key ={item.id}
-                            id={item.id}
-                            title={item.title}
-                            price={item.price}
-                            image={item.image}
-                            rating={item.rating}
-                        />
-                    ))
+                    <FlipMove>
+                        {cart.map((item,i) => (
+                            <CheckoutProduct
+                                key ={item.id+i}
+                                id={item.id}
+                                title={item.title}
+                                price={item.price}
+                                image={item.image}
+                                rating={item.rating}
 
+                            />
+                        ))
+                     }
+                    </FlipMove>
                         
-                    }
             </div>
                 <CurrencyFormat
                     renderText={value => (
