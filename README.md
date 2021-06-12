@@ -6,6 +6,8 @@ react
 
 firebase
 
+Express
+
 nodeJs
 
 Stripe (payment)
