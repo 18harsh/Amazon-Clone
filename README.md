@@ -15,4 +15,4 @@ Stripe (payment)
 
 # Website live on:
 
-<a href="clone-f0c77.web.app/">clone-f0c77.web.app/</a>
+<a href="https://clone-f0c77.web.app/">https://clone-f0c77.web.app/</a>
